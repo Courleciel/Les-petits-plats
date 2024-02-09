@@ -5,10 +5,20 @@ function createRecipeCards(recipes) {
       const card = document.createElement('div');
       card.classList.add('recipe-card');
 
+      const imageContainer = document.createElement('div');
+      imageContainer.classList.add('image-container');
+
       const image = document.createElement('img');
       image.src = `/assets/images/${recipe.image}`;
       image.alt = recipe.name;
-      card.appendChild(image);
+      imageContainer.appendChild(image);
+
+      const cookingTime = document.createElement('div');
+      cookingTime.classList.add('cooking-time');
+      cookingTime.textContent = `${recipe.time} min`;
+      imageContainer.appendChild(cookingTime);
+
+      card.appendChild(imageContainer);
 
       const textContainer = document.createElement('div');
       textContainer.classList.add('recipe-text-container');
