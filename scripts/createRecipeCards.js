@@ -10,35 +10,57 @@ function createRecipeCards(recipes) {
       image.alt = recipe.name;
       card.appendChild(image);
 
+      const textContainer = document.createElement('div');
+      textContainer.classList.add('recipe-text-container');
+
       const name = document.createElement('h2');
       name.textContent = recipe.name;
-      card.appendChild(name);
+      textContainer.appendChild(name);
+
+      const recetteTitle = document.createElement('h3');
+      recetteTitle.textContent = "Recette";
+      textContainer.appendChild(recetteTitle);
 
       const description = document.createElement('p');
       description.textContent = recipe.description;
-      card.appendChild(description);
+      textContainer.appendChild(description);
 
       const ingredientsTitle = document.createElement('h3');
       ingredientsTitle.textContent = "Ingrédients";
-      card.appendChild(ingredientsTitle);
+      textContainer.appendChild(ingredientsTitle);
 
-      const ingredientsList = document.createElement('ul');
+      const ingredientsContainer = document.createElement('div');
+      ingredientsContainer.classList.add('ingredients-container');
+
       recipe.ingredients.forEach(ingredient => {
-          const item = document.createElement('li');
-          let text = ingredient.ingredient;
+          const ingredientBlock = document.createElement('div');
+          ingredientBlock.classList.add('ingredient-block');
+
+          const ingredientName = document.createElement('span');
+          ingredientName.textContent = ingredient.ingredient;
+          ingredientName.classList.add('ingredient-name');
+          ingredientBlock.appendChild(ingredientName);
+
+          const ingredientQuantity = document.createElement('span');
+          let quantityText = '';
           if (ingredient.quantity) {
-              text += `: ${ingredient.quantity}`;
+              quantityText += `${ingredient.quantity}`;
           }
           if (ingredient.unit) {
-              text += ` ${ingredient.unit}`;
+              quantityText += ` ${ingredient.unit}`;
           }
-          item.textContent = text;
-          ingredientsList.appendChild(item);
-      });
-      card.appendChild(ingredientsList);
+          ingredientQuantity.textContent = quantityText;
+          ingredientQuantity.classList.add('ingredient-quantity');
+          ingredientBlock.appendChild(ingredientQuantity);
 
+          ingredientsContainer.appendChild(ingredientBlock);
+      });
+
+      textContainer.appendChild(ingredientsContainer);
+      card.appendChild(textContainer);
       recipesContainer.appendChild(card);
   });
 }
+
 
 export { createRecipeCards };

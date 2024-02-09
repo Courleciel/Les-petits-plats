@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: 'Anton', sans-serif;
+  background-color: #ededed;
 }
 
 header {
@@ -65,4 +66,78 @@ header {
   cursor: pointer;
   width: 25px;
   height: auto;
+}
+
+#recipes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: #ededed;
+  margin: 0 40px;
+}
+
+.recipe-card > img {
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  height: 30%;
+}
+.recipe-card {
+  flex-basis: 30%;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  background-color: white;
+}
+
+.recipe-card h2 {
+  margin: 0;
+}
+
+.recipe-text-container {
+  padding: 20px;
+}
+
+.recipe-card p, .recipe-card li {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.recipe-card h3 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  color: #7A7A7A;
+}
+
+.ingredients-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.ingredient-block {
+  width: calc(50% - 5px);
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.ingredient-name, .ingredient-quantity {
+  font-family: 'Manrope', sans-serif;
+}
+
+.ingredient-name {
+  font-weight: 14px;
+  font-weight: 500;
+  color: #1B1B1B;
+  line-height: 19.12px;
+}
+
+.ingredient-quantity {
+  font-size: 14px;
+  font-weight: 400;
+  color: #7A7A7A;
 }
