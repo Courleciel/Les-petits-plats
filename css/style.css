@@ -77,7 +77,7 @@ header {
   margin: 0 40px;
 }
 
-#ingredient-selector {
+#ingredient-selector, #appliance-selector, #ustensil-selector {
   margin-left: 40px;
   margin-bottom: 40px;
   margin-top: 20px;
