@@ -36,3 +36,33 @@ header {
   transform: translate(-50%, -50%);
   margin: 0;
 }
+
+.search-container {
+  position: absolute;
+  width: 70%;
+  top: calc(50% + 80px);
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  align-items: center;
+}
+
+
+#searchBar {
+  flex-grow: 1;
+  padding: 20px;
+  padding-right: 45px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-bar-icon {
+  position: absolute;
+  right: 10px;
+  background-color: #1B1B1B;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 25px;
+  height: auto;
+}
