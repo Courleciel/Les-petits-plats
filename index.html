@@ -19,16 +19,17 @@
       </div>
     </header>
     <div class="filters-container">
-      <div class="filters">
-        <select id="ingredient-selector">
-          <option value="">Ingrédients</option>
-        </select>
-        <select id="appliance-selector">
-          <option value="">Appareils</option>
-        </select>
-        <select id="ustensil-selector">
-          <option value="">Ustensiles</option>
-        </select>
+      <div class="filter1">
+        <input type="text" id="ingredient-selector" placeholder="Ingrédients">
+        <ul id="ingredient-list" class="filter-list"></ul>
+      </div>
+      <div class="filter2">
+        <input type="text" id="appliance-selector" placeholder="Appareils">
+        <ul id="appliance-list" class="filter-list"></ul>
+      </div>
+      <div class="filter3">
+        <input type="text" id="ustensil-selector" placeholder="Ustensiles">
+        <ul id="ustensil-list" class="filter-list"></ul>
       </div>
       <h1 id="recipes-number"></h1>
     </div>
@@ -37,5 +38,6 @@
     </footer>
     <script type="module" src="/scripts/fetchRecipesData.js"></script>
     <script type="module" src="/scripts/createRecipeCards.js"></script>
+    <script type="module" src="/scripts/filterTags.js"></script>
 </body>
 </html>

@@ -184,16 +184,24 @@ header {
 }
 
 .filters-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: flex; /* Utiliser Flexbox */
+  justify-content: space-between; /* Pour aligner les éléments horizontalement avec un espacement égal */
 }
+
+.filters {
+  flex: 1; /* Chaque liste de filtres prendra une part égale de l'espace disponible */
+}
+
 
 #recipes-number {
   font-size: 21px;
   font-weight: 400;
   margin-bottom: 0;
   margin-right: 40px;
-  margin-top: 0;
+  margin-top: 40px;
 
+}
+
+.filter-list {
+  list-style: none;
 }
