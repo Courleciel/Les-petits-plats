@@ -190,6 +190,7 @@ header {
 }
 
 #ingredient-list, #appliance-list, #ustensil-list {
+  display: none;
   font-family: 'Manrope', sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -212,4 +213,6 @@ header {
   background-color: #FFFFFF;
   border-radius: 11px;
   padding: 15px;
+  max-height: 150px;
+  overflow-y: auto;
 }

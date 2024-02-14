@@ -32,6 +32,29 @@ function populateFilters(recipes) {
     li.textContent = ustensil;
     ustensilList.appendChild(li);
   });
+
+  // Ajouter des gestionnaires d'événements aux tags pour afficher les listes correspondantes
+  const ingredientSelector = document.getElementById('ingredient-selector');
+  const applianceSelector = document.getElementById('appliance-selector');
+  const ustensilSelector = document.getElementById('ustensil-selector');
+
+  ingredientSelector.addEventListener('click', () => {
+    ingredientsList.style.display = 'block';
+    applianceList.style.display = 'none';
+    ustensilList.style.display = 'none';
+  });
+
+  applianceSelector.addEventListener('click', () => {
+    ingredientsList.style.display = 'none';
+    applianceList.style.display = 'block';
+    ustensilList.style.display = 'none';
+  });
+
+  ustensilSelector.addEventListener('click', () => {
+    ingredientsList.style.display = 'none';
+    applianceList.style.display = 'none';
+    ustensilList.style.display = 'block';
+  });
 }
 
 export { populateFilters };
