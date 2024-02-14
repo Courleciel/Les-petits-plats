@@ -15,23 +15,9 @@ function populateFilters(recipes) {
   });
 
   // Remplissage des listes HTML
-  ingredientsSet.forEach(ingredient => {
-    const li = document.createElement('li');
-    li.textContent = ingredient;
-    ingredientsList.appendChild(li);
-  });
-
-  applianceSet.forEach(appliance => {
-    const li = document.createElement('li');
-    li.textContent = appliance;
-    applianceList.appendChild(li);
-  });
-
-  ustensilSet.forEach(ustensil => {
-    const li = document.createElement('li');
-    li.textContent = ustensil;
-    ustensilList.appendChild(li);
-  });
+  fillList(ingredientsSet, ingredientsList);
+  fillList(applianceSet, applianceList);
+  fillList(ustensilSet, ustensilList);
 
   // Ajouter des gestionnaires d'événements aux tags pour afficher les listes correspondantes
   const ingredientSelector = document.getElementById('ingredient-selector');
@@ -39,21 +25,56 @@ function populateFilters(recipes) {
   const ustensilSelector = document.getElementById('ustensil-selector');
 
   ingredientSelector.addEventListener('click', () => {
-    ingredientsList.style.display = 'block';
-    applianceList.style.display = 'none';
-    ustensilList.style.display = 'none';
+    toggleListDisplay('ingredient-list');
   });
 
   applianceSelector.addEventListener('click', () => {
-    ingredientsList.style.display = 'none';
-    applianceList.style.display = 'block';
-    ustensilList.style.display = 'none';
+    toggleListDisplay('appliance-list');
   });
 
   ustensilSelector.addEventListener('click', () => {
-    ingredientsList.style.display = 'none';
-    applianceList.style.display = 'none';
-    ustensilList.style.display = 'block';
+    toggleListDisplay('ustensil-list');
+  });
+
+  // Ajouter la fonctionnalité de recherche
+  addSearchFunctionality(ingredientsList);
+  addSearchFunctionality(applianceList);
+  addSearchFunctionality(ustensilList);
+}
+
+function fillList(dataSet, listElement) {
+  listElement.innerHTML = ''; // Clear previous content
+  dataSet.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    listElement.appendChild(li);
+  });
+}
+
+function toggleListDisplay(listId) {
+  const list = document.getElementById(listId);
+  const allLists = document.querySelectorAll('.filter-list');
+  allLists.forEach(l => {
+    if (l.id !== listId) {
+      l.style.display = 'none';
+    }
+  });
+  list.style.display = (list.style.display === 'block') ? 'none' : 'block';
+}
+
+function addSearchFunctionality(listElement) {
+  const input = listElement.previousElementSibling;
+  input.addEventListener('input', () => {
+    const searchTerm = input.value.toLowerCase();
+    const items = listElement.querySelectorAll('li');
+    items.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      if (text.includes(searchTerm)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
   });
 }
 
