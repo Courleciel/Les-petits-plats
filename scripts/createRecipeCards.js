@@ -1,3 +1,5 @@
+let recipesCount = 0;
+
 function createRecipeCards(recipes) {
   const recipesContainer = document.getElementById('recipes-container');
 
@@ -69,7 +71,9 @@ function createRecipeCards(recipes) {
       textContainer.appendChild(ingredientsContainer);
       card.appendChild(textContainer);
       recipesContainer.appendChild(card);
+      recipesCount++;
   });
+  document.getElementById('recipes-number').textContent = `${recipesCount} recette${recipesCount !== 1 ? 's' : ''}`;
 }
 
 
