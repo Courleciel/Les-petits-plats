@@ -77,19 +77,6 @@ header {
   margin: 0 40px;
 }
 
-#ingredient-selector, #appliance-selector, #ustensil-selector {
-  margin-left: 40px;
-  margin-bottom: 40px;
-  margin-top: 40px;
-  padding: 17px 16px 17px 16px;
-  border-radius: 11px;
-  width: 150px;
-  border: none;
-  font-family: 'Manrope', sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-}
-
 .recipe-card img {
   width: 100%;
 
@@ -184,12 +171,12 @@ header {
 }
 
 .filters-container {
-  display: flex; /* Utiliser Flexbox */
-  justify-content: space-between; /* Pour aligner les éléments horizontalement avec un espacement égal */
+  display: flex;
+  justify-content: space-between;
 }
 
 .filters {
-  flex: 1; /* Chaque liste de filtres prendra une part égale de l'espace disponible */
+  flex: 1;
 }
 
 
@@ -202,6 +189,27 @@ header {
 
 }
 
-.filter-list {
+#ingredient-list, #appliance-list, #ustensil-list {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
   list-style: none;
+  padding: 0;
+  line-height: 19.12px;
+}
+
+#ingredient-selector,  #appliance-selector, #ustensil-selector {
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+}
+
+.filter1, .filter2, .filter3 {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: 40px;
+  background-color: #FFFFFF;
+  border-radius: 11px;
+  padding: 15px;
 }
