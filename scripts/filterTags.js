@@ -1,4 +1,5 @@
-function populateFilters(recipes) {
+function populateFilters(allRecipes, filteredRecipes) {
+  const recipesToUse = filteredRecipes || allRecipes; // Use filtered recipes if available, otherwise use all recipes
   const ingredientsList = document.getElementById('ingredient-list');
   const applianceList = document.getElementById('appliance-list');
   const ustensilList = document.getElementById('ustensil-list');
@@ -7,8 +8,8 @@ function populateFilters(recipes) {
   const applianceSet = new Set();
   const ustensilSet = new Set();
 
-  // Extraction des ingrédients, appareils et ustensiles uniques de toutes les recettes
-  recipes.forEach(recipe => {
+  // Extraction des ingrédients, appareils et ustensiles uniques des recettes à utiliser
+  recipesToUse.forEach(recipe => {
     recipe.ingredients.forEach(ingredient => ingredientsSet.add(ingredient.ingredient));
     applianceSet.add(recipe.appliance);
     recipe.ustensils.forEach(ustensil => ustensilSet.add(ustensil));

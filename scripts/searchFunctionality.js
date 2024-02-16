@@ -1,5 +1,5 @@
 import { createRecipeCards } from './createRecipeCards.js';
-
+import { populateFilters } from './filterTags.js';
 
 function addSearchFunctionality(recipes) {
   const searchBar = document.getElementById('searchBar');
@@ -18,10 +18,11 @@ function addSearchFunctionality(recipes) {
   });
 }
 
-function updateDisplayedRecipes(filteredRecipes) {
+function updateDisplayedRecipes(filteredRecipes, allRecipes) {
   const recipesContainer = document.getElementById('recipes-container');
   recipesContainer.innerHTML = ''; // Clear previous content
   createRecipeCards(filteredRecipes);
+  populateFilters(allRecipes, filteredRecipes); // Update filters with filtered recipes
 }
 
 export { addSearchFunctionality };
