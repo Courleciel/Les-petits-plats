@@ -1,5 +1,7 @@
 import { createRecipeCards } from './createRecipeCards.js';
 import { populateFilters } from './filterTags.js';
+import { addSearchFunctionality } from './searchFunctionality.js';
+
 
 const jsonFilePath = 'data/recipes.json';
 
@@ -14,6 +16,7 @@ function fetchRecipesData(filePath) {
       .then(data => {
         createRecipeCards(data.recipes);
         populateFilters(data.recipes);
+        addSearchFunctionality(data.recipes);
     })
       .catch(error => {
           console.error('Erreur lors du chargement des données JSON:', error);
