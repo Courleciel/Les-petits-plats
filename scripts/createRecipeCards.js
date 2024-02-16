@@ -3,6 +3,8 @@ let recipesCount = 0;
 function createRecipeCards(recipes) {
   const recipesContainer = document.getElementById('recipes-container');
 
+  recipesCount = 0;
+
   recipes.forEach(recipe => {
       const card = document.createElement('div');
       card.classList.add('recipe-card');
