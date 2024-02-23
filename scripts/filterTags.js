@@ -1,3 +1,5 @@
+import { updateDisplayedRecipes } from './searchFunctionality.js';
+
 function populateFilters(allRecipes, filteredRecipes) {
   const recipesToUse = filteredRecipes || allRecipes; // Use filtered recipes if available, otherwise use all recipes
   const ingredientsList = document.getElementById('ingredient-list');
@@ -44,6 +46,10 @@ function populateFilters(allRecipes, filteredRecipes) {
   addSearchFunctionality(ingredientsList);
   addSearchFunctionality(applianceList);
   addSearchFunctionality(ustensilList);
+
+  addFilterClickHandler(ingredientsList, allRecipes);
+  addFilterClickHandler(applianceList, allRecipes);
+  addFilterClickHandler(ustensilList, allRecipes);
 }
 
 function fillList(dataSet, listElement) {
@@ -52,6 +58,22 @@ function fillList(dataSet, listElement) {
     const li = document.createElement('li');
     li.textContent = item;
     listElement.appendChild(li);
+  });
+}
+
+function addFilterClickHandler(listElement, allRecipes) {
+  listElement.addEventListener('click', event => {
+    const filterValue = event.target.textContent;
+    const filteredRecipes = allRecipes.filter(recipe =>
+      recipe.ingredients.some(ingredient =>
+        ingredient.ingredient.toLowerCase() === filterValue.toLowerCase()
+      ) ||
+      recipe.appliance.toLowerCase() === filterValue.toLowerCase() ||
+      recipe.ustensils.some(ustensil =>
+        ustensil.toLowerCase() === filterValue.toLowerCase()
+      )
+    );
+    updateDisplayedRecipes(filteredRecipes, allRecipes);
   });
 }
 

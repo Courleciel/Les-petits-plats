@@ -2,25 +2,24 @@ import { createRecipeCards } from './createRecipeCards.js';
 import { populateFilters } from './filterTags.js';
 import { addSearchFunctionality } from './searchFunctionality.js';
 
-
 const jsonFilePath = 'data/recipes.json';
 
 function fetchRecipesData(filePath) {
   fetch(filePath)
-      .then(response => {
-          if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          return response.json();
-      })
-      .then(data => {
-        createRecipeCards(data.recipes);
-        populateFilters(data.recipes);
-        addSearchFunctionality(data.recipes);
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
     })
-      .catch(error => {
-          console.error('Erreur lors du chargement des données JSON:', error);
-      });
+    .then(data => {
+      createRecipeCards(data.recipes);
+      populateFilters(data.recipes); // Pass all recipes here
+      addSearchFunctionality(data.recipes); // Pass all recipes here
+    })
+    .catch(error => {
+      console.error('Erreur lors du chargement des données JSON:', error);
+    });
 }
 
 fetchRecipesData(jsonFilePath);

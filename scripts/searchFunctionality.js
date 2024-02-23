@@ -25,4 +25,4 @@ function updateDisplayedRecipes(filteredRecipes, allRecipes) {
   populateFilters(allRecipes, filteredRecipes); // Update filters with filtered recipes
 }
 
-export { addSearchFunctionality };
+export { addSearchFunctionality, updateDisplayedRecipes };
