@@ -2,7 +2,7 @@ import { createRecipeCards } from './createRecipeCards.js';
 import { populateFilters } from './filterTags.js';
 import { addSearchFunctionality } from './searchFunctionality.js';
 
-const jsonFilePath = 'data/recipes.json';
+export const jsonFilePath = 'data/recipes.json';
 
 function fetchRecipesData(filePath) {
   fetch(filePath)
@@ -23,3 +23,5 @@ function fetchRecipesData(filePath) {
 }
 
 fetchRecipesData(jsonFilePath);
+
+export {fetchRecipesData}

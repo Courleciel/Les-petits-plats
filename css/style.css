@@ -206,6 +206,21 @@ header {
   border: none;
 }
 
+#ingredient-list li:hover {
+  background-color: #FFD15B;
+  padding-left: 10px;
+}
+
+#appliance-list li:hover {
+  background-color: #FFD15B;
+  padding-left: 10px;
+}
+
+#ustensil-list li:hover {
+  background-color: #FFD15B;
+  padding-left: 10px;
+}
+
 .filter1, .filter2, .filter3 {
   margin-top: 40px;
   margin-bottom: 40px;
@@ -215,4 +230,28 @@ header {
   padding: 15px;
   max-height: 150px;
   overflow-y: auto;
+}
+
+#selected-tags-container {
+  font-family: 'Manrope', sans-serif;
+  margin-left: 40px;
+  margin-bottom: 40px;
+}
+
+.selected-tag {
+  display: none;
+  background-color: #FFD15B;
+  color: #1B1B1B;
+  padding: 11px;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
+  width: 100px;
+  font-size: 14px;
+}
+
+.close-button {
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 24px;
 }

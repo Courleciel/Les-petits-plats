@@ -1,4 +1,6 @@
 import { updateDisplayedRecipes } from './searchFunctionality.js';
+import { fetchRecipesData } from "./fetchRecipesData.js";
+import { jsonFilePath } from "./fetchRecipesData.js";
 
 function populateFilters(allRecipes, filteredRecipes) {
   const recipesToUse = filteredRecipes || allRecipes; // Use filtered recipes if available, otherwise use all recipes
@@ -74,6 +76,7 @@ function addFilterClickHandler(listElement, allRecipes) {
       )
     );
     updateDisplayedRecipes(filteredRecipes, allRecipes);
+    addSelectedTag(filterValue);
   });
 }
 
@@ -110,5 +113,24 @@ document.addEventListener('click', () => {
     list.style.display = 'none';
   });
 });
+function addSelectedTag(tagName, allRecipes) {
+  const selectedTagsContainer = document.getElementById('selected-tags-container');
+  const tagElement = document.createElement('span');
+  tagElement.classList.add('selected-tag');
+  tagElement.textContent = tagName;
+  const closeButton = document.createElement('span');
+  closeButton.classList.add('close-button');
+  closeButton.textContent = '×'
+  closeButton.addEventListener('click', () => {
+    // Réinitialiser la page en rechargeant les données initiales et en recréant les cartes de recette
+    fetchRecipesData(jsonFilePath);
+    selectedTagsContainer.innerHTML = ''; // Effacer les tags sélectionnés
+  });
+  tagElement.appendChild(closeButton);
+  selectedTagsContainer.appendChild(tagElement);
+  tagElement.style.display = 'block';
+}
+
+
 
 export { populateFilters };
