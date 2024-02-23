@@ -3,7 +3,7 @@ import { fetchRecipesData } from "./fetchRecipesData.js";
 import { jsonFilePath } from "./fetchRecipesData.js";
 
 function populateFilters(allRecipes, filteredRecipes) {
-  const recipesToUse = filteredRecipes || allRecipes; // Use filtered recipes if available, otherwise use all recipes
+  const recipesToUse = filteredRecipes || allRecipes; // Utiliser les recettes filtrées si disponibles, sinon utiliser toutes les recettes
   const ingredientsList = document.getElementById('ingredient-list');
   const applianceList = document.getElementById('appliance-list');
   const ustensilList = document.getElementById('ustensil-list');
@@ -24,25 +24,19 @@ function populateFilters(allRecipes, filteredRecipes) {
   fillList(applianceSet, applianceList);
   fillList(ustensilSet, ustensilList);
 
-  // Ajouter des gestionnaires d'événements aux tags pour afficher les listes correspondantes
+  // Supprimer les écouteurs d'événements existants pour éviter les doublons
   const ingredientSelector = document.getElementById('ingredient-selector');
   const applianceSelector = document.getElementById('appliance-selector');
   const ustensilSelector = document.getElementById('ustensil-selector');
 
-  ingredientSelector.addEventListener('click', (event) => {
-    event.stopPropagation(); // Stop propagation to prevent immediate closing
-    toggleListDisplay('ingredient-list');
-  });
+  ingredientSelector.removeEventListener('click', toggleIngredientListDisplay);
+  applianceSelector.removeEventListener('click', toggleApplianceListDisplay);
+  ustensilSelector.removeEventListener('click', toggleUstensilListDisplay);
 
-  applianceSelector.addEventListener('click', (event) => {
-    event.stopPropagation(); // Stop propagation to prevent immediate closing
-    toggleListDisplay('appliance-list');
-  });
-
-  ustensilSelector.addEventListener('click', (event) => {
-    event.stopPropagation(); // Stop propagation to prevent immediate closing
-    toggleListDisplay('ustensil-list');
-  });
+  // Ajouter des gestionnaires d'événements aux tags pour afficher les listes correspondantes
+  ingredientSelector.addEventListener('click', toggleIngredientListDisplay);
+  applianceSelector.addEventListener('click', toggleApplianceListDisplay);
+  ustensilSelector.addEventListener('click', toggleUstensilListDisplay);
 
   // Ajouter la fonctionnalité de recherche
   addSearchFunctionality(ingredientsList);
@@ -54,6 +48,23 @@ function populateFilters(allRecipes, filteredRecipes) {
   addFilterClickHandler(ustensilList, allRecipes);
 }
 
+// Définition des fonctions pour les gestionnaires d'événements
+function toggleIngredientListDisplay(event) {
+  event.stopPropagation(); // Arrêter la propagation pour empêcher la fermeture immédiate
+  toggleListDisplay('ingredient-list');
+}
+
+function toggleApplianceListDisplay(event) {
+  event.stopPropagation(); // Arrêter la propagation pour empêcher la fermeture immédiate
+  toggleListDisplay('appliance-list');
+}
+
+function toggleUstensilListDisplay(event) {
+  event.stopPropagation(); // Arrêter la propagation pour empêcher la fermeture immédiate
+  toggleListDisplay('ustensil-list');
+}
+
+
 function fillList(dataSet, listElement) {
   listElement.innerHTML = ''; // Clear previous content
   dataSet.forEach(item => {
@@ -64,7 +75,7 @@ function fillList(dataSet, listElement) {
 }
 
 function addFilterClickHandler(listElement, allRecipes) {
-  listElement.addEventListener('click', event => {
+  const handleFilterClick = (event) => {
     const filterValue = event.target.textContent;
     const filteredRecipes = allRecipes.filter(recipe =>
       recipe.ingredients.some(ingredient =>
@@ -77,7 +88,12 @@ function addFilterClickHandler(listElement, allRecipes) {
     );
     updateDisplayedRecipes(filteredRecipes, allRecipes);
     addSelectedTag(filterValue);
-  });
+  };
+
+  if (!listElement._filterClickHandlerAdded) {
+    listElement.addEventListener('click', handleFilterClick);
+    listElement._filterClickHandlerAdded = true;
+  }
 }
 
 function toggleListDisplay(listId) {
