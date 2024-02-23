@@ -25,15 +25,18 @@ function populateFilters(allRecipes, filteredRecipes) {
   const applianceSelector = document.getElementById('appliance-selector');
   const ustensilSelector = document.getElementById('ustensil-selector');
 
-  ingredientSelector.addEventListener('click', () => {
+  ingredientSelector.addEventListener('click', (event) => {
+    event.stopPropagation(); // Stop propagation to prevent immediate closing
     toggleListDisplay('ingredient-list');
   });
 
-  applianceSelector.addEventListener('click', () => {
+  applianceSelector.addEventListener('click', (event) => {
+    event.stopPropagation(); // Stop propagation to prevent immediate closing
     toggleListDisplay('appliance-list');
   });
 
-  ustensilSelector.addEventListener('click', () => {
+  ustensilSelector.addEventListener('click', (event) => {
+    event.stopPropagation(); // Stop propagation to prevent immediate closing
     toggleListDisplay('ustensil-list');
   });
 
@@ -78,5 +81,12 @@ function addSearchFunctionality(listElement) {
     });
   });
 }
+
+document.addEventListener('click', () => {
+  const allLists = document.querySelectorAll('.filter-list');
+  allLists.forEach(list => {
+    list.style.display = 'none';
+  });
+});
 
 export { populateFilters };
