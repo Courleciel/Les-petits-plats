@@ -68,6 +68,10 @@ header {
   height: auto;
 }
 
+.search-bar-icon:hover {
+  background-color: #FFD15B;
+}
+
 #recipes-container {
   display: flex;
   flex-wrap: wrap;
@@ -201,6 +205,17 @@ header {
 
 #ingredient-selector,  #appliance-selector, #ustensil-selector {
   font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #7A7A7A;
+  border: solid 1px #C6C6C6;
+  display: none;
+  margin-top: 15px;
+  width: 125px;
+}
+
+#ingredient-search, #appareils-search, #ustensil-search {
+  font-family: 'Manrope', sans-serif;
   font-size: 16px;
   font-weight: 500;
   border: none;
@@ -230,6 +245,7 @@ header {
   padding: 15px;
   max-height: 150px;
   overflow-y: auto;
+  width: 150px;
 }
 
 #selected-tags-container {

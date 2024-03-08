@@ -4,6 +4,7 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Les petits plats</title>
@@ -20,15 +21,18 @@
     </header>
     <div class="filters-container">
       <div class="filter1">
-        <input type="text" id="ingredient-selector" placeholder="Ingrédients">
+        <span id="ingredient-search" class="filter-toggle">Ingrédients <i class="fa-solid fa-chevron-down"></i></span>
+        <input type="text" id="ingredient-selector" class="input-text">
         <ul id="ingredient-list" class="filter-list"></ul>
       </div>
       <div class="filter2">
-        <input type="text" id="appliance-selector" placeholder="Appareils">
+        <span id="appareils-search" class="filter-toggle">Appareils <i class="fa-solid fa-chevron-down"></i></span>
+        <input type="text" id="appliance-selector" class="input-text">
         <ul id="appliance-list" class="filter-list"></ul>
       </div>
       <div class="filter3">
-        <input type="text" id="ustensil-selector" placeholder="Ustensiles">
+        <span id="ustensil-search" class="filter-toggle">Ustensiles <i class="fa-solid fa-chevron-down"></i></span>
+        <input type="text" id="ustensil-selector" class="input-text">
         <ul id="ustensil-list" class="filter-list"></ul>
       </div>
       <h1 id="recipes-number"></h1>

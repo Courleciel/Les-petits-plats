@@ -27,16 +27,16 @@ function populateFilters(allRecipes, filteredRecipes) {
   fillList(ustensilSet, ustensilList);
 
   // Supprimer les écouteurs d'événements existants pour éviter les doublons
-  const ingredientSelector = document.getElementById('ingredient-selector');
-  const applianceSelector = document.getElementById('appliance-selector');
-  const ustensilSelector = document.getElementById('ustensil-selector');
+  const ingredientSearch = document.getElementById('ingredient-search');
+  const applianceSelector = document.getElementById('appareils-search');
+  const ustensilSelector = document.getElementById('ustensil-search');
 
-  ingredientSelector.removeEventListener('click', toggleIngredientListDisplay);
+  ingredientSearch.removeEventListener('click', toggleIngredientListDisplay);
   applianceSelector.removeEventListener('click', toggleApplianceListDisplay);
   ustensilSelector.removeEventListener('click', toggleUstensilListDisplay);
 
   // Ajouter des gestionnaires d'événements aux tags pour afficher les listes correspondantes
-  ingredientSelector.addEventListener('click', toggleIngredientListDisplay);
+  ingredientSearch.addEventListener('click', toggleIngredientListDisplay);
   applianceSelector.addEventListener('click', toggleApplianceListDisplay);
   ustensilSelector.addEventListener('click', toggleUstensilListDisplay);
 
@@ -109,16 +109,68 @@ function addFilterClickHandler(listElement, allRecipes) {
   }
 }
 
-function toggleListDisplay(listId) {
+function toggleListDisplay(listId, iconElement) {
   const list = document.getElementById(listId);
+  const input = list.previousElementSibling;
+
   const allLists = document.querySelectorAll('.filter-list');
   allLists.forEach(l => {
     if (l.id !== listId) {
       l.style.display = 'none';
+      const input = l.previousElementSibling;
+      if (input.classList.contains('filter-input')) {
+        input.style.display = 'none';
+      }
     }
   });
-  list.style.display = (list.style.display === 'block') ? 'none' : 'block';
+
+  if (list.style.display === 'block') {
+    list.style.display = 'none';
+    if (iconElement) {
+      iconElement.classList.remove('fa-rotate-180');
+    }
+    if (input && input.tagName.toLowerCase() === 'input') {
+      input.style.display = 'none';
+    }
+  } else {
+    list.style.display = 'block';
+    if (iconElement) {
+      iconElement.classList.add('fa-rotate-180');
+    }
+    if (input && input.tagName.toLowerCase() === 'input') {
+      input.style.display = 'block';
+    }
+  }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const filterToggleElements = document.querySelectorAll('.filter-toggle');
+  filterToggleElements.forEach(element => {
+    const iconElement = element.querySelector('i');
+    element.addEventListener('click', () => {
+      toggleListDisplay(element.nextElementSibling.id, iconElement);
+    });
+  });
+});
+
+document.addEventListener('click', (event) => {
+  if (event.target.tagName.toLowerCase() !== 'input') {
+    const allLists = document.querySelectorAll('.filter-list');
+    allLists.forEach(list => {
+      list.style.display = 'none';
+      const input = list.previousElementSibling;
+      if (input && input.tagName.toLowerCase() === 'input') {
+        if (!event.target.classList.contains('filter-input') && event.target !== input) {
+          input.style.display = 'none';
+          const iconElement = input.parentElement.querySelector('i');
+          if (iconElement) {
+            iconElement.classList.remove('fa-rotate-180');
+          }
+        }
+      }
+    });
+  }
+});
 
 function addSearchFunctionality(listElement) {
   const input = listElement.previousElementSibling;
@@ -136,12 +188,6 @@ function addSearchFunctionality(listElement) {
   });
 }
 
-document.addEventListener('click', () => {
-  const allLists = document.querySelectorAll('.filter-list');
-  allLists.forEach(list => {
-    list.style.display = 'none';
-  });
-});
 function addSelectedTag(tagName, allRecipes) {
   const selectedTagsContainer = document.getElementById('selected-tags-container');
   const tagElement = document.createElement('span');
@@ -151,15 +197,13 @@ function addSelectedTag(tagName, allRecipes) {
   closeButton.classList.add('close-button');
   closeButton.textContent = '×'
   closeButton.addEventListener('click', () => {
-    // Réinitialiser la page en rechargeant les données initiales et en recréant les cartes de recette
     fetchRecipesData(jsonFilePath);
-    selectedTagsContainer.innerHTML = ''; // Effacer les tags sélectionnés
+    selectedTagsContainer.innerHTML = '';
   });
   tagElement.appendChild(closeButton);
   selectedTagsContainer.appendChild(tagElement);
   tagElement.style.display = 'block';
 }
-
 
 
 export { populateFilters };
