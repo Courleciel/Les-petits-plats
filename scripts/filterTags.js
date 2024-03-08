@@ -2,6 +2,8 @@ import { updateDisplayedRecipes } from './searchFunctionality.js';
 import { fetchRecipesData } from "./fetchRecipesData.js";
 import { jsonFilePath } from "./fetchRecipesData.js";
 
+let selectedTags = [];
+
 function populateFilters(allRecipes, filteredRecipes) {
   const recipesToUse = filteredRecipes || allRecipes; // Utiliser les recettes filtrées si disponibles, sinon utiliser toutes les recettes
   const ingredientsList = document.getElementById('ingredient-list');
@@ -77,15 +79,26 @@ function fillList(dataSet, listElement) {
 function addFilterClickHandler(listElement, allRecipes) {
   const handleFilterClick = (event) => {
     const filterValue = event.target.textContent;
+    const isTagSelected = selectedTags.includes(filterValue);
+
+    if (!isTagSelected) {
+      selectedTags.push(filterValue);
+    } else {
+      selectedTags = selectedTags.filter(tag => tag !== filterValue);
+    }
+
     const filteredRecipes = allRecipes.filter(recipe =>
-      recipe.ingredients.some(ingredient =>
-        ingredient.ingredient.toLowerCase() === filterValue.toLowerCase()
-      ) ||
-      recipe.appliance.toLowerCase() === filterValue.toLowerCase() ||
-      recipe.ustensils.some(ustensil =>
-        ustensil.toLowerCase() === filterValue.toLowerCase()
+      selectedTags.every(tag =>
+        recipe.ingredients.some(ingredient =>
+          ingredient.ingredient.toLowerCase() === tag.toLowerCase()
+        ) ||
+        recipe.appliance.toLowerCase() === tag.toLowerCase() ||
+        recipe.ustensils.some(ustensil =>
+          ustensil.toLowerCase() === tag.toLowerCase()
+        )
       )
     );
+
     updateDisplayedRecipes(filteredRecipes, allRecipes);
     addSelectedTag(filterValue);
   };
