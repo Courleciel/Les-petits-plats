@@ -18,15 +18,12 @@ function addSearchFunctionality(recipes) {
       updateDisplayedRecipes(filteredRecipes);
 
       if (filteredRecipes.length === 0) {
-        // Afficher le message d'erreur
         noResultsMessage.textContent = `Aucune recette ne contient '${searchTerm}'. Vous pouvez chercher "tarte aux pommes", "poisson", etc.`;
         noResultsMessage.style.display = 'block';
       } else {
-        // Cacher le message d'erreur s'il y a des résultats
         noResultsMessage.style.display = 'none';
       }
     } else {
-      // Cacher le message d'erreur si la longueur de la recherche est inférieure à 3 caractères
       noResultsMessage.style.display = 'none';
     }
   });
