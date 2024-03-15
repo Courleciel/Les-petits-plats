@@ -94,7 +94,7 @@ function addFilterClickHandler(listElement, allRecipes) {
     );
 
     updateDisplayedRecipes(filteredRecipes, allRecipes);
-    addSelectedTag(filterValue);
+    addSelectedTag(filterValue, allRecipes);
   };
 
   if (!listElement._filterClickHandlerAdded) {
@@ -191,8 +191,23 @@ function addSelectedTag(tagName, allRecipes) {
   closeButton.classList.add('close-button');
   closeButton.textContent = '×'
   closeButton.addEventListener('click', () => {
-    fetchRecipesData(jsonFilePath);
-    selectedTagsContainer.innerHTML = '';
+    const indexToRemove = selectedTags.indexOf(tagName);
+    if (indexToRemove !== -1) {
+      selectedTags.splice(indexToRemove, 1);
+      const filteredRecipes = allRecipes.filter(recipe =>
+        selectedTags.every(tag =>
+          recipe.ingredients.some(ingredient =>
+            ingredient.ingredient.toLowerCase() === tag.toLowerCase()
+          ) ||
+          recipe.appliance.toLowerCase() === tag.toLowerCase() ||
+          recipe.ustensils.some(ustensil =>
+            ustensil.toLowerCase() === tag.toLowerCase()
+          )
+        )
+      );
+      updateDisplayedRecipes(filteredRecipes, allRecipes);
+      selectedTagsContainer.removeChild(tagElement);
+    }
   });
   tagElement.appendChild(closeButton);
   selectedTagsContainer.appendChild(tagElement);
