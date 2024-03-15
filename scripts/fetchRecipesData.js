@@ -14,8 +14,8 @@ function fetchRecipesData(filePath) {
     })
     .then(data => {
       createRecipeCards(data.recipes);
-      populateFilters(data.recipes); // Pass all recipes here
-      addSearchFunctionality(data.recipes); // Pass all recipes here
+      populateFilters(data.recipes);
+      addSearchFunctionality(data.recipes);
     })
     .catch(error => {
       console.error('Erreur lors du chargement des données JSON:', error);

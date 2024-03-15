@@ -19,7 +19,7 @@ function addSearchFunctionality(recipes) {
             const ingredient = recipe.ingredients[j];
             if (ingredient.ingredient.toLowerCase().includes(searchTerm)) {
               filteredRecipes.push(recipe);
-              break; // Sortir de la boucle dès qu'un ingrédient correspondant est trouvé
+              break;
             }
           }
         }
@@ -27,19 +27,15 @@ function addSearchFunctionality(recipes) {
       updateDisplayedRecipes(filteredRecipes, recipes);
 
       if (filteredRecipes.length === 0) {
-        // Afficher le message d'erreur
         noResultsMessage.textContent = `Aucune recette ne contient '${searchTerm}'. Vous pouvez chercher "tarte aux pommes", "poisson", etc.`;
         noResultsMessage.style.display = 'block';
       } else {
-        // Cacher le message d'erreur s'il y a des résultats
         noResultsMessage.style.display = 'none';
       }
     } else if (searchTerm.length === 0) {
-      // Si le champ de recherche est vide, afficher toutes les recettes
       updateDisplayedRecipes(recipes, recipes);
       noResultsMessage.style.display = 'none';
     } else {
-      // Cacher le message d'erreur si la longueur de la recherche est inférieure à 3 caractères
       noResultsMessage.style.display = 'none';
     }
   });

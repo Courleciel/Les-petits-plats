@@ -5,7 +5,7 @@ import { jsonFilePath } from "./fetchRecipesData.js";
 let selectedTags = [];
 
 function populateFilters(allRecipes, filteredRecipes) {
-  const recipesToUse = filteredRecipes || allRecipes; // Utiliser les recettes filtrées si disponibles, sinon utiliser toutes les recettes
+  const recipesToUse = filteredRecipes || allRecipes;
   const ingredientsList = document.getElementById('ingredient-list');
   const applianceList = document.getElementById('appliance-list');
   const ustensilList = document.getElementById('ustensil-list');
@@ -14,19 +14,16 @@ function populateFilters(allRecipes, filteredRecipes) {
   const applianceSet = new Set();
   const ustensilSet = new Set();
 
-  // Extraction des ingrédients, appareils et ustensiles uniques des recettes à utiliser
   recipesToUse.forEach(recipe => {
     recipe.ingredients.forEach(ingredient => ingredientsSet.add(ingredient.ingredient));
     applianceSet.add(recipe.appliance);
     recipe.ustensils.forEach(ustensil => ustensilSet.add(ustensil));
   });
 
-  // Remplissage des listes HTML
   fillList(ingredientsSet, ingredientsList);
   fillList(applianceSet, applianceList);
   fillList(ustensilSet, ustensilList);
 
-  // Supprimer les écouteurs d'événements existants pour éviter les doublons
   const ingredientSearch = document.getElementById('ingredient-search');
   const applianceSelector = document.getElementById('appareils-search');
   const ustensilSelector = document.getElementById('ustensil-search');
@@ -35,12 +32,10 @@ function populateFilters(allRecipes, filteredRecipes) {
   applianceSelector.removeEventListener('click', toggleApplianceListDisplay);
   ustensilSelector.removeEventListener('click', toggleUstensilListDisplay);
 
-  // Ajouter des gestionnaires d'événements aux tags pour afficher les listes correspondantes
   ingredientSearch.addEventListener('click', toggleIngredientListDisplay);
   applianceSelector.addEventListener('click', toggleApplianceListDisplay);
   ustensilSelector.addEventListener('click', toggleUstensilListDisplay);
 
-  // Ajouter la fonctionnalité de recherche
   addSearchFunctionality(ingredientsList);
   addSearchFunctionality(applianceList);
   addSearchFunctionality(ustensilList);
@@ -50,25 +45,24 @@ function populateFilters(allRecipes, filteredRecipes) {
   addFilterClickHandler(ustensilList, allRecipes);
 }
 
-// Définition des fonctions pour les gestionnaires d'événements
 function toggleIngredientListDisplay(event) {
-  event.stopPropagation(); // Arrêter la propagation pour empêcher la fermeture immédiate
+  event.stopPropagation();
   toggleListDisplay('ingredient-list');
 }
 
 function toggleApplianceListDisplay(event) {
-  event.stopPropagation(); // Arrêter la propagation pour empêcher la fermeture immédiate
+  event.stopPropagation();
   toggleListDisplay('appliance-list');
 }
 
 function toggleUstensilListDisplay(event) {
-  event.stopPropagation(); // Arrêter la propagation pour empêcher la fermeture immédiate
+  event.stopPropagation();
   toggleListDisplay('ustensil-list');
 }
 
 
 function fillList(dataSet, listElement) {
-  listElement.innerHTML = ''; // Clear previous content
+  listElement.innerHTML = '';
   dataSet.forEach(item => {
     const li = document.createElement('li');
     li.textContent = item;
