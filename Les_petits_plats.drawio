@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-03-22T07:26:42.849Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="w0qEGZZu69EDYQRiuk38" version="24.0.7" type="github">
+<mxfile host="app.diagrams.net" modified="2024-03-22T09:02:55.174Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="JlukI3qAiZNlH9PyuL0Q" version="24.0.7" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="2954" dy="1140" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -105,7 +105,7 @@
         <mxCell id="m4nx0a1EMI3NmY3gHGnZ-6" value="Source" style="edgeLabel;resizable=0;html=1;;align=left;verticalAlign=bottom;" parent="m4nx0a1EMI3NmY3gHGnZ-4" connectable="0" vertex="1">
           <mxGeometry x="-1" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="OW7yi2ZXH9zMm0uoNlvP-1" value="Le nom, la description ou les infrédients de la recette contient le terme de recherche" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="OW7yi2ZXH9zMm0uoNlvP-1" value="Le nom, la description ou les ingrédients de la recette contient le terme de recherche" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="192.5" y="620" width="165" height="170" as="geometry" />
         </mxCell>
         <mxCell id="OW7yi2ZXH9zMm0uoNlvP-2" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="OW7yi2ZXH9zMm0uoNlvP-1">
