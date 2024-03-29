@@ -55,6 +55,7 @@ header {
   padding-right: 45px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin-top: 50px;
 }
 
 .search-bar-icon {
@@ -66,6 +67,7 @@ header {
   cursor: pointer;
   width: 25px;
   height: auto;
+  margin-top: 50px;
 }
 
 .search-bar-icon:hover {
